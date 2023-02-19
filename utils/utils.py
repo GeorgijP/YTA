@@ -16,5 +16,5 @@ class Youtube_anal:
         """
         Выводит в консоль информацию о канале.
         """
-        self.info = json.dumps(self.service.channels().list(id=self.id_channel, part='snippet,statistics').execute())
+        self.info = json.dumps(self.service.channels().list(id=self.id_channel, part='snippet, statistics').execute())
         return self.info
