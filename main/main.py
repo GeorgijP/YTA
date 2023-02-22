@@ -1,5 +1,5 @@
 from utils.utils import Youtube_anal
 
-item = Youtube_anal("UCCROBQj3rdGNc-E_aMpbV_A", "YT_API_KEY")
+item = Youtube_anal("UClI9aidW3X044NeB4QS-yxw", "YT_API_KEY")
 
-print(item.print_info())
+item.info_save('Youtube_analitics.json')
