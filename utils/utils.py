@@ -32,5 +32,20 @@ class Youtube_anal:
         return self.info
 
     def info_save(self, name_file):
+        """
+        Сохраняет информацию о канале в файл
+        """
         with open(name_file, 'w', encoding='UTF-8') as file:
             json.dump(self.channel_info, file, indent=4)
+
+    def __str__(self):
+        return f"Youtube-канал: {self.title}"
+
+    def __add__(self, other):
+        return int(self.subscribers) + int(other.subscribers)
+
+    def __lt__(self, other):
+        if isinstance(other, Youtube_anal):
+            return self.subscribers < other.subscribers
+        else:
+            return False
