@@ -1,6 +1,5 @@
 # Импортируем нужные библиотеки
 import json
-
 from decouple import config
 from googleapiclient.discovery import build
 
