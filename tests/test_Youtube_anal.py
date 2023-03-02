@@ -7,13 +7,12 @@ from utils.utils import Youtube_anal
 
 def test_str():
     item_1 = Youtube_anal("UClI9aidW3X044NeB4QS-yxw", "YT_API_KEY")
-    assert item_1 == "Youtube-канал: Антон Птушкин"
+    assert item_1.__str__() == "Youtube-канал: Антон Птушкин"
 
 def test_lt():
     item_1 = Youtube_anal("UClI9aidW3X044NeB4QS-yxw", "YT_API_KEY")
     item_2 = Youtube_anal("UCEVNTzTFSGkZGTjVE9ipXpg", "YT_API_KEY")
-    assert item_2 < item_1 == True
-    assert item_2 > item_1 == False
+    assert item_2.__lt__(item_1) is True
 
 def test_add():
     item_1 = Youtube_anal("UClI9aidW3X044NeB4QS-yxw", "YT_API_KEY")

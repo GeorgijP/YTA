@@ -48,3 +48,35 @@ class Youtube_anal:
             return self.subscribers < other.subscribers
         else:
             return False
+
+
+class Video:
+    """Класс для обработки статистики видео"""
+    def __init__(self, id_video):
+        self.id_video = id_video
+        self.api_key = config("YT_API_KEY")
+        self.video_data = self.service().videos().list(id=self.id_video, part='snippet, statistics').execute()
+        self.video_info = json.dumps(self.video_data, indent=4)
+        self.video_name = self.video_data['items'][0]['snippet']['title']
+        self.video_view_count = self.video_data['items'][0]['statistics']['viewCount']
+        self.video_like_count = self.video_data['items'][0]['statistics']['likeCount']
+
+    def service(self):
+        self.service = build('youtube', 'v3', developerKey=self.api_key)
+        return self.service
+
+    def __str__(self):
+        return f"Название видео: {self.video_name}"
+
+
+class PLVideo(Video):
+    """Класс для обработки статистики видео из плейлиста"""
+    def __init__(self,id_video, id_playlist):
+        super().__init__(id_video)
+        self.id_playlist = id_playlist
+        self.playlist_data = self.service.playlists().list(id=self.id_playlist, part='snippet, contentDetails').execute()
+        self.playlist_info = json.dumps(self.playlist_data, indent=4)
+        self.playlist_name = self.playlist_data['items'][0]['snippet']['title']
+
+    def __str__(self):
+        return f"Название видео: {self.video_name} Название плейлиста: {self.playlist_name}"
