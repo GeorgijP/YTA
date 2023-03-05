@@ -100,4 +100,4 @@ class PlayList:
 
 pl = PlayList("PLguYHBi01DWr4bRWc4uaguASmo7lW4GCb")
 print(pl.playlist_info)
-# print(pl.url)
+
