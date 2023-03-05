@@ -87,9 +87,9 @@ class PlayList:
     def __init__(self, id_playlist):
         self.id_playlist = id_playlist
         self.api_key = config("YT_API_KEY")
-        self.playlist_data = self.service().playlists().list(id=self.id_playlist, part='snippet, contentDetails').execute()
+        self.playlist_data = self.service().playlistItems().list(id=self.id_playlist, part='snippet, contentDetails').execute()
         self.playlist_info = json.dumps(self.playlist_data, indent=4)
-        self.playlist_name = self.playlist_data['items'][0]['snippet']['title']
+        # self.playlist_name = self.playlist_data['items'][0]['snippet']['title']
 
         self.url = f"https://www.youtube.com/playlist?list={self.id_playlist}"
 
@@ -99,5 +99,5 @@ class PlayList:
 
 
 pl = PlayList("PLguYHBi01DWr4bRWc4uaguASmo7lW4GCb")
-# print(pl.playlist_info)
-print(pl.url)
+print(pl.playlist_info)
+# print(pl.url)
