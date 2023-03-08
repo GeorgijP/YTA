@@ -101,11 +101,12 @@ class PlayList(MixinService):
         self.playlist_info = json.dumps(self.playlist_data, indent=4)
         # self.playlist_name = self.playlist_data['items'][0]['snippet']['title']
         self.url = f"https://www.youtube.com/playlist?list={self.id_playlist}"
-
+        self.playlist_video = self.service.playlistItems().list(playlistId=self.id_playlist, part='contentDetails').execute()
+        self.playlist_video_info = json.dumps(self.playlist_video, indent=4)
     def __repr__(self):
         return f"PlayList({self.id_playlist})"
 
 
 pl = PlayList("PLguYHBi01DWr4bRWc4uaguASmo7lW4GCb")
-print(pl.playlist_info)
+print(pl.playlist_video_info)
 
