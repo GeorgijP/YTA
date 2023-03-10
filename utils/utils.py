@@ -63,13 +63,20 @@ class Youtube_anal(MixinService):
 class Video(MixinService):
     """Класс для обработки статистики видео"""
     def __init__(self, id_video):
-        super().__init__()
         self.id_video = id_video
-        self.video_data = self.service().videos().list(id=self.id_video, part='snippet, statistics').execute()
-        self.video_info = json.dumps(self.video_data, indent=4)
-        self.video_name = self.video_data['items'][0]['snippet']['title']
-        self.video_view_count = self.video_data['items'][0]['statistics']['viewCount']
-        self.video_like_count = self.video_data['items'][0]['statistics']['likeCount']
+        try:
+            super().__init__()
+            self.video_data = self.service().videos().list(id=self.id_video, part='snippet, statistics').execute()
+            self.video_info = json.dumps(self.video_data, indent=4)
+            self.video_name = self.video_data['items'][0]['snippet']['title']
+            self.video_view_count = self.video_data['items'][0]['statistics']['viewCount']
+            self.video_like_count = self.video_data['items'][0]['statistics']['likeCount']
+        except:
+            self.video_data = None
+            self.video_info = None
+            self.video_name = None
+            self.video_view_count = None
+            self.video_like_count = None
 
     def __str__(self):
         return f"Название видео: {self.video_name}"
@@ -129,8 +136,3 @@ class PlayList(MixinService):
 
     def __repr__(self):
         return f"PlayList({self.id_playlist})"
-
-
-pl = PlayList("PLguYHBi01DWr4bRWc4uaguASmo7lW4GCb")
-print(pl.show_best_video())
-print(type(pl.total_duration))
