@@ -71,7 +71,7 @@ class Video(MixinService):
             self.video_name = self.video_data['items'][0]['snippet']['title']
             self.video_view_count = self.video_data['items'][0]['statistics']['viewCount']
             self.video_like_count = self.video_data['items'][0]['statistics']['likeCount']
-        except:
+        except Exception:
             self.video_data = None
             self.video_info = None
             self.video_name = None
@@ -136,3 +136,7 @@ class PlayList(MixinService):
 
     def __repr__(self):
         return f"PlayList({self.id_playlist})"
+
+
+video = Video("-y_5drHpY1*")
+print(video.video_name)
