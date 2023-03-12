@@ -137,6 +137,6 @@ class PlayList(MixinService):
     def __repr__(self):
         return f"PlayList({self.id_playlist})"
 
-
-video = Video("-y_5drHpY1*")
-print(video.video_name)
+#
+# video = Video("-y_5drHpY1*")
+# print(video.video_name)
